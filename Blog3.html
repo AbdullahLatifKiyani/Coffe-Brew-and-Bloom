@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brew & Bloom - Artisanal Coffee Shop in downtown Seattle. Discover our handcrafted coffee, fresh pastries, and cozy atmosphere.">
+    <meta name="keywords" content="coffee shop, artisanal coffee, Seattle coffee, pastries, specialty coffee">
+    <title>Brew & Bloom - Blog 3</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Copy all CSS from the main page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6C4E31;
+            --secondary: #A27B5C;
+            --accent: #DCD7C9;
+            --light: #F9F5EB;
+            --text-dark: #2C3639;
+            --text-light: #F9F5EB;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--accent);
+        }
+
+        .header {
+            background-color: var(--primary);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+            overflow: visible; /* Changed from default to allow dropdown to show */
+        }
+
+        /* Position the dropdown container */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--primary);
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0.5rem 0;
+            z-index: 1000;
+            min-width: 150px;
+        }
+
+        .dropdown-menu .dropdown-item {
+            padding: 0.5rem 1rem;
+            color: var(--light);
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: var(--secondary);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Add a caret icon to indicate dropdown */
+        .dropdown .fa-caret-down {
+            margin-left: 0.5rem;
+        }
+
+        /* Mobile Dropdown Styles */
+        .mobile-menu-item.dropdown .dropdown-menu {
+            display: none;
+            padding-left: 1rem;
+        }
+
+        .mobile-menu-item.dropdown.active .dropdown-menu {
+            display: block;
+        }
+
+        .header.scrolled {
+            background-color: rgba(44, 54, 57, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative; /* Add this */
+            overflow: visible; /* Add this */
+        }
+
+        .logo {
+            color: var(--light);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .blog-content {
+            padding-top: 120px; /* Increased padding-top to account for fixed header (70px header + 50px extra space) */
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-bottom: 5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            margin-top: 0; /* Reset top margin */
+            line-height: 1.2; /* Improve readability for long titles */
+        }
+
+        .blog-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .blog-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            display: block; /* Remove any potential inline spacing */
+        }
+
+        .footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 4rem 1rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section {
+            margin-bottom: 2rem;
+        }
+
+        .footer-title {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-link a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Keep the existing header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">Brew & Bloom</a>
+            <ul class="nav-menu">
+                <li><a href="coffee_shop.html" class="nav-link">Home</a></li>
+                <li><a href="coffee_shop.html#menu-section" class="nav-link">Menu</a></li>
+                <li><a href="coffee_shop.html#features" class="nav-link">About</a></li>
+                <li><a href="coffee_shop.html#gallery" class="nav-link">Gallery</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Blog <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="blog1.html" class="dropdown-item">Blog 1</a></li>
+                        <li><a href="blog2.html" class="dropdown-item">Blog 2</a></li>
+                        <li><a href="blog3.html" class="dropdown-item">Blog 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="coffee_shop.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="blog-content">
+            <h1 class="blog-title">From Bean to Cup: The Journey of Your Morning Coffee</h1>
+            <img src="coffee.jpg" alt="Coffee Journey" class="blog-image">
+            <div class="blog-text">
+                <p>Ever wondered about the incredible journey your morning coffee takes before reaching your cup? At Brew & Bloom, we're passionate about sharing the story behind every sip you take. Let's explore the fascinating voyage of coffee beans from distant farms to your favorite café.</p>
+
+                <h2>The Growing Story</h2>
+                <p>High in the mountains of countries like Ethiopia, Colombia, and Guatemala, coffee cherries slowly ripen under the warm sun. Our partner farmers carefully tend to these precious fruits, waiting for the perfect moment to harvest. Each cherry is hand-picked at peak ripeness, ensuring only the best beans make it to your cup.</p>
+
+                <h2>From Cherry to Bean</h2>
+                <p>Once harvested, the coffee cherries undergo careful processing to reveal the beans inside. Whether it's the washed method, where beans are fermented and cleaned to create bright, clean flavors, or the natural process, where cherries are dried in the sun for richer, fruitier notes, each step is crucial to developing the coffee's final taste.</p>
+
+                <h2>The Roasting Magic</h2>
+                <p>This is where science meets artistry. Our master roasters transform the raw green beans into the aromatic coffee you know and love. Through carefully controlled heat and timing, they develop each bean's unique characteristics - from bright citrus notes to deep chocolate undertones. Every batch is roasted to perfection, bringing out the best flavors that these beans have to offer.</p>
+
+                <h2>Our Careful Selection</h2>
+                <p>At Brew & Bloom, we travel to coffee farms throughout the year, building relationships with farmers and selecting only the finest beans. We pay premium prices to ensure sustainable farming practices and support local communities. These partnerships allow us to bring you exceptional coffee while making a positive impact at origin.</p>
+
+                <h2>The Final Craft</h2>
+                <p>Our skilled baristas are the final artists in this journey. Using precise temperatures, timing, and techniques, they craft each beverage to highlight the unique characteristics of our carefully sourced beans. Whether you prefer a smooth latte or a bright pour-over, every cup represents the culmination of this remarkable journey.</p>
+
+                <h2>Your Part in the Story</h2>
+                <p>When you visit Brew & Bloom, you're not just drinking coffee - you're participating in a global journey that connects farmers, roasters, baristas, and coffee lovers. Each cup represents countless hours of craftsmanship and care, from the first bloom of the coffee flower to the final pour into your cup.</p>
+
+                <p><em>Come experience the result of this amazing journey at Brew & Bloom. Our passionate team is always ready to share more about your coffee's origin story and help you discover your perfect cup.</em> ☕</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Keep the existing footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3 class="footer-title">About Us</h3>
+                <p>Brew & Bloom is your neighborhood artisanal coffee shop, dedicated to crafting the perfect cup while creating a warm and welcoming space for our community.</p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Quick Links</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="coffee_shop.html#menu-section">Menu</a></li>
+                    <li class="footer-link"><a href="coffee_shop.html#features">About</a></li>
+                    <li class="footer-link"><a href="coffee_shop.html#gallery">Gallery</a></li>
+                    <li class="footer-link"><a href="coffee_shop.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-title">Connect With Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/?lang=en" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://www.yelp.com/" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-yelp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Brew & Bloom. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

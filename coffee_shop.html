@@ -28,6 +28,56 @@
             --text-light: #F9F5EB;
         }
 
+        /* Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--primary);
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0.5rem 0;
+            z-index: 1000;
+            min-width: 150px;
+        }
+
+        .dropdown-menu .dropdown-item {
+            padding: 0.5rem 1rem;
+            color: var(--light);
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: var(--secondary);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Add a caret icon to indicate dropdown */
+        .dropdown .fa-caret-down {
+            margin-left: 0.5rem;
+        }
+
+        /* Mobile Dropdown Styles */
+        .mobile-menu-item.dropdown .dropdown-menu {
+            display: none;
+            padding-left: 1rem;
+        }
+
+        .mobile-menu-item.dropdown.active .dropdown-menu {
+            display: block;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -1153,6 +1203,14 @@
                 <li><a href="#menu-section" class="nav-link">Menu</a></li>
                 <li><a href="#features" class="nav-link">About</a></li>
                 <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li class="dropdown">
+                    <a href="#" class="nav-link">Blog <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="Blog1.html" class="dropdown-item">Blog 1</a></li>
+                        <li><a href="Blog2.html" class="dropdown-item">Blog 2</a></li>
+                        <li><a href="Blog3.html" class="dropdown-item">Blog 3</a></li>
+                    </ul>
+                </li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </nav>
@@ -1168,6 +1226,14 @@
             <li class="mobile-menu-item"><a href="#menu-section" class="mobile-menu-link">Menu</a></li>
             <li class="mobile-menu-item"><a href="#features" class="mobile-menu-link">About</a></li>
             <li class="mobile-menu-item"><a href="#gallery" class="mobile-menu-link">Gallery</a></li>
+            <li class="mobile-menu-item dropdown">
+                <a href="#" class="mobile-menu-link">Blog <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="Blog1.html" class="dropdown-item">Blog 1</a></li>
+                    <li><a href="Blog2.html" class="dropdown-item">Blog 2</a></li>
+                    <li><a href="Blog3.html" class="dropdown-item">Blog 3</a></li>
+                </ul>
+            </li>
             <li class="mobile-menu-item"><a href="#contact" class="mobile-menu-link">Contact</a></li>
         </ul>
     </nav>
@@ -1656,6 +1722,16 @@
                     // Close mobile menu if open
                     mobileMenu.classList.remove('active');
                 }
+            });
+        });
+
+        // Mobile Dropdown Toggle
+        const mobileDropdowns = document.querySelectorAll('.mobile-menu-item.dropdown');
+
+        mobileDropdowns.forEach(dropdown => {
+            dropdown.addEventListener('click', (e) => {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
             });
         });
 
